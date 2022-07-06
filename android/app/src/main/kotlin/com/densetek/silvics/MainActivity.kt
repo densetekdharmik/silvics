@@ -1,4 +1,4 @@
-package com.example.silvics
+package com.densetek.silvics
 
 import io.flutter.embedding.android.FlutterActivity
 

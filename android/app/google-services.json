@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "955258775054",
+    "project_id": "silvics-7ff23",
+    "storage_bucket": "silvics-7ff23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955258775054:android:51706d0a1b55d949367e5f",
+        "android_client_info": {
+          "package_name": "com.densetek.silvics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955258775054-8nlg11eiajl51gndid3hgirrcojd10v6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb8LlkJnfk3GBVhQWw9AvBwVHGGPK5u0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955258775054-8nlg11eiajl51gndid3hgirrcojd10v6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

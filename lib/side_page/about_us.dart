@@ -1,18 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:silvics/services/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../services/services.dart';
 import '../values/const_urls.dart';
 
-class TrandingPage extends StatefulWidget {
-  const TrandingPage({Key? key}) : super(key: key);
+class AboutUsPage extends StatefulWidget {
+  const AboutUsPage({Key? key}) : super(key: key);
 
   @override
-  State<TrandingPage> createState() => _TrandingPageState();
+  State<AboutUsPage> createState() => _AboutUsPageState();
 }
 
-class _TrandingPageState extends State<TrandingPage> {
+class _AboutUsPageState extends State<AboutUsPage> {
+
   late WebViewController controller;
 
   @override
@@ -23,37 +25,41 @@ class _TrandingPageState extends State<TrandingPage> {
           controller.goBack();
           return false;
         }
-        Services.showConfirmDialog(context, "Are You Sure ?", () {
-          SystemNavigator.pop();
-        });
-        return false;
+        return true;
       },
       child: Scaffold(
+        appBar: AppBar(
+          title: Text("About US"
+          ),
+        ),
         body: WebView(
-          initialUrl: ConstUrls.trendingUrl,
+          initialUrl: ConstUrls.aboutUS,
           onWebViewCreated: (controller) {
             this.controller = controller;
+            log("Current URL" + controller.currentUrl().toString());
           },
           javascriptMode: JavascriptMode.unrestricted,
           onPageStarted: (url) {
             Future.delayed(Duration(milliseconds: 500), () {
-              if (url.contains(ConstUrls.trendingUrl)) {
+              if (url.contains(ConstUrls.aboutUS)) {
                 controller.runJavascript(
                     "var head = document.getElementsByClassName('main-header header-style-two')[0];" +
-                        "head.remove();" +
+                        "head.remove();"  +
                         "var f1 = document.getElementsByClassName('main-footer')[0];" +
                         "f1.remove();"
                 );
               }
               if (url.startsWith("https://api.whatsapp.com/")) {
-                controller.loadUrl(ConstUrls.trendingUrl);
+                controller.loadUrl(ConstUrls.homeUrl);
                 Services.launchWhatsapp("9265314870");
               }
               if (url.startsWith("tel:")) {
-                controller.loadUrl(ConstUrls.webUrl);
+
+                controller.loadUrl(ConstUrls.homeUrl);
                 Services.dialNumber("9265314870");
               }
             });
+            log("Current URL" + controller.currentUrl().toString());
           },
         ),
       ),

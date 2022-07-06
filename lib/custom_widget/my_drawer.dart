@@ -5,6 +5,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silvics/profile_page.dart';
+import 'package:silvics/side_page/about_us.dart';
+import 'package:silvics/side_page/gallery_page.dart';
+import 'package:silvics/side_page/tutorials.dart';
 import 'package:silvics/splash_screen.dart';
 
 import '../services/services.dart';
@@ -45,17 +48,6 @@ class _MyDrawerState extends State<MyDrawer> {
                     ],
                   )),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text(
-                      "",
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        color: AppColors.textWhite,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       leading: Icon(Icons.person, color: _iconColor),
@@ -64,7 +56,48 @@ class _MyDrawerState extends State<MyDrawer> {
                         style: _textColor,
                       ),
                       onTap: () {
-                        Get.to(()=> ProfilePage());
+                        Get.to(() => ProfilePage());
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading:
+                      Icon(Icons.account_box_outlined, color: _iconColor),
+                      title: Text(
+                        "About US",
+                        style: _textColor,
+                      ),
+                      onTap: (){
+                        Get.to(()=> AboutUsPage());
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: Icon(Icons.video_collection_outlined,
+                          color: _iconColor),
+                      title: Text(
+                        "Tutorials",
+                        style: _textColor,
+                      ),
+                      onTap: () {
+                        Get.to(() => TutorialPage());
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: Icon(Icons.photo, color: _iconColor),
+                      title: Text(
+                        "Gallery",
+                        style: _textColor,
+                      ),
+                      onTap: () {
+                        Get.to(() => GalleryPage());
                       },
                     ),
                   ),

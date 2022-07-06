@@ -20,6 +20,7 @@ class LoginPage extends StatefulWidget {
 }
 
 bool _showLoader = false;
+String? _firebaseToken;
 
 var _whiteColor = Colors.white.withOpacity(0.5);
 
@@ -30,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    _getToken();
     _initController();
   }
 
@@ -86,7 +88,9 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextFormField(
                     keyboardType: TextInputType.phone,
                     controller: _phoneController,
+                    maxLength: 10,
                     decoration: InputDecoration(
+                        counterText: "",
                         focusColor: Colors.transparent,
                         enabledBorder: const OutlineInputBorder(
                           borderSide:
@@ -187,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                 Text("Dont Have An Account ? "),
                 InkWell(
                   onTap: () {
-                     Get.to(() => SignUpPage());
+                    Get.to(() => SignUpPage());
                   },
                   child: Text("Sign UP",
                       style: TextStyle(
@@ -229,6 +233,7 @@ class _LoginPageState extends State<LoginPage> {
       var body = {
         "var_mobileno": mobile,
         "var_password": password,
+        "var_token": _firebaseToken,
       };
       response = await dio.post(apiUrl,
           options: Options(
@@ -240,9 +245,9 @@ class _LoginPageState extends State<LoginPage> {
         _showLoader = false;
         _prefs.setBool('isLoggedIn', true);
         _message = response.data['message'];
-        _prefs.setString('userName',response.data['data']['var_name']);
-        _prefs.setString('userEmail',response.data['data']['var_email']);
-        _prefs.setString('userPhone',response.data['data']['var_mobileno']);
+        _prefs.setString('userName', response.data['data']['var_name']);
+        _prefs.setString('userEmail', response.data['data']['var_email']);
+        _prefs.setString('userPhone', response.data['data']['var_mobileno']);
       });
       Services.snackBarSuccess(context, _message!);
       Get.offAll(() => ContainPage());
@@ -254,5 +259,12 @@ class _LoginPageState extends State<LoginPage> {
         Services.snackBarError(context, "Something Went Wrong!!!");
       }
     }
+  }
+
+  Future<void> _getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _firebaseToken = prefs.getString('firebaseToken');
+    });
   }
 }

@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       },
       child: Scaffold(
         body: WebView(
-          initialUrl: ConstUrls.webUrl,
+          initialUrl: ConstUrls.homeUrl,
           onWebViewCreated: (controller) {
             this.controller = controller;
             log("Current URL" + controller.currentUrl().toString());
@@ -40,18 +40,21 @@ class _HomePageState extends State<HomePage> {
           javascriptMode: JavascriptMode.unrestricted,
           onPageStarted: (url) {
             Future.delayed(Duration(milliseconds: 500), () {
-              if (url.contains(ConstUrls.webUrl)) {
+              if (url.contains(ConstUrls.homeUrl)) {
                 controller.runJavascript(
                     "var head = document.getElementsByClassName('main-header header-style-two')[0];" +
-                        "head.remove();");
+                        "head.remove();"  +
+                        "var f1 = document.getElementsByClassName('main-footer')[0];" +
+                        "f1.remove();"
+                );
               }
               if (url.startsWith("https://api.whatsapp.com/")) {
-                controller.loadUrl(ConstUrls.webUrl);
+                controller.loadUrl(ConstUrls.homeUrl);
                 Services.launchWhatsapp("9265314870");
               }
               if (url.startsWith("tel:")) {
 
-                controller.loadUrl(ConstUrls.webUrl);
+                controller.loadUrl(ConstUrls.homeUrl);
                 Services.dialNumber("9265314870");
               }
             });

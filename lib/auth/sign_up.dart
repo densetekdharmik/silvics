@@ -31,7 +31,6 @@ TextEditingController? _nameController,
 bool _showLoader = false;
 
 class _SignUpPageState extends State<SignUpPage> {
-
   @override
   void initState() {
     super.initState();
@@ -313,7 +312,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   Text("Already Have An Account ? "),
                   InkWell(
                     onTap: () {
-                      Get.to(()=> LoginPage());
+                      Get.to(() => LoginPage());
                     },
                     child: Text("Sign In",
                         style: TextStyle(
@@ -359,7 +358,7 @@ class _SignUpPageState extends State<SignUpPage> {
         _message = response.data['message'];
       });
       log(response.data.toString());
-      Get.offAll(() => LoginPage());
+      Get.to(() => LoginPage())!.then((value) => {setState(() {})});
       Services.snackBarSuccess(context, _message!);
     } on DioError catch (e) {
       if (e.response!.statusCode == 400) {
@@ -371,13 +370,13 @@ class _SignUpPageState extends State<SignUpPage> {
       }
     }
   }
+
   _initController() {
     _nameController = TextEditingController();
     _emailController = TextEditingController();
     _phoneController = TextEditingController();
     _passwordController = TextEditingController();
     _cnfrmPasswordController = TextEditingController();
-
   }
 
   _disposeController() {

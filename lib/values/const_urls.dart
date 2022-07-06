@@ -5,6 +5,10 @@ class ConstUrls {
   static String signUp = baseUrl +"sing_up";
 
   static String webUrl = "https://silvicswoodveneers.com/";
+  static String homeUrl =  webUrl + "/categories";
   static String trendingUrl = webUrl + "/trending-product";
   static String contactUrl = webUrl + "/contact";
+  static String tutorials = webUrl + "/tutorials";
+  static String gallery = webUrl + "/gallery";
+  static String aboutUS = webUrl + "/about";
 }

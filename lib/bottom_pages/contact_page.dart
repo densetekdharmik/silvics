@@ -40,7 +40,11 @@ class _ContactPageState extends State<ContactPage> {
               if (url.contains(ConstUrls.contactUrl)) {
                 controller.runJavascript(
                     "var head = document.getElementsByClassName('main-header header-style-two')[0];" +
-                        "head.remove();");
+                        "head.remove();" +
+                        "var f1 = document.getElementsByClassName('main-footer')[0];" +
+                        "f1.remove();"
+
+                );
               }
               if (url.startsWith("https://api.whatsapp.com/")) {
                 controller.loadUrl(ConstUrls.contactUrl);
